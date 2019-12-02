@@ -30,7 +30,7 @@ const Carousel = props => {
                 >
                   <img 
                        className="d-block img-fluid" 
-                       src={ image.url } 
+                       src={ image.cover || image.url } 
                        alt={ image.name } 
                   />
                 </div>

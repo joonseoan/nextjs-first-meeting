@@ -7,8 +7,8 @@ import Carousel from '../components/carousel';
 import MovieList from '../components/movieList';
 // import Footer from '../components/footer'; // going to _APP.JS
 
-import { getMovies, getCategories } from '../resources/movies';
-// import MOVIE_DATA from '../resources/movies';
+import { getMovies, getCategories } from '../actions/movies';
+// import MOVIE_DATA from '../actions/movies';
 
 // Including getInitialProps
 // class Home extends Component {
@@ -171,8 +171,9 @@ Home.getInitialProps = async () => {
   const movies = await getMovies();
   const categories = await getCategories();
   const images = movies.map(movie => ({ 
-    id: `movie-${movie.id}`,
+    id: `movie-${ movie.id }`,
     url: movie.image,
+    cover: movie.cover || '',
     name: movie.name
   }));
 

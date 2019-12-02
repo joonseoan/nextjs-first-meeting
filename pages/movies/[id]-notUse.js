@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/router';
 
-import { getMovieById } from '../../resources/movies';
+import { getMovieById, deleteMovie } from '../../actions/movies';
 
 const Movie = props => {
 
@@ -12,11 +12,18 @@ const Movie = props => {
     
     // id is from url
     console.log('useRouter.query', router.query)
+    
     // we are using id. we can use other field name like [title].js, btw.
     // id is from file name [id].js
     // const { id } = router.query;
 
     const { movie } = props;
+
+    const handleDeleteMovie = async () => {
+        const { id } = router.query;
+        await deleteMovie(id);
+        router.push('/');
+    }
 
     return (
         <div className="container">
@@ -25,7 +32,18 @@ const Movie = props => {
                 <p className="lead">{ movie.description }</p>
                 <hr className="my-4" />
                 <p>{ movie.genre }</p>
-                <a className="btn btn-primary btn-lg">Learn More</a>
+                <button
+                    onClick={() => {}  } 
+                    className="btn btn-primary btn-lg mr-1"
+                >
+                    Learn More
+                </button>
+                <button
+                    onClick={ () => handleDeleteMovie() } 
+                    className="btn btn-danger btn-lg"
+                >
+                    Delete
+                </button>
             </div>
             <p className="desc-text">
                 { movie.longDesc }
