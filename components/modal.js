@@ -16,7 +16,7 @@ class Modal extends Component {
         // It is including references's all javascript attribute.
         // console.log('closeButton', closeButton);
         // this.closeButton.click();
-        console.log('closeButton', this.closeButton);
+        // console.log('closeButton', this.closeButton);
         this.closeButton.click();
     }
 
@@ -50,7 +50,7 @@ class Modal extends Component {
                         <button
                             ref={ ele => { 
                                 // ele is "this button element"
-                                console.log(ele) 
+                                // console.log(ele) 
                                 return this.closeButton=ele
                             }} 
                             type="button" 

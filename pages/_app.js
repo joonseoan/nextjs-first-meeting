@@ -34,21 +34,40 @@ class MovieApp extends App {
     // TODO: excute here "getInitialProps" and pass this data to each page
 
     static async getInitialProps(appContext) {
-        console.log('appContext: ', appContext)
+        /* 
+        
+            appContext {
+                Component,
+                router : ServerRouter : {
+                    route
+                },
+                ctx: {
+                    err: 'textMessage'
+                    req: {},
+                    res: {},
+                }
+            }        
+                
+         */
+
+        // console.log('appContext: ', appContext)
         // get App-based props here
         const appProps = await App.getInitialProps(appContext);
         // getInitialProps from each page which is rendering...
+        // [Important ]
         // console.log('appProps: ', appProps) // it encloses pageProps
         return{ ...appProps }; // pageProps
     }
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         // "pageProps" is a default props in _app.js to get all props from each page 
 
         // Component here is just having the return value from the each component
         //  we are navigating to.
-        // Does not run helper functions and getinitialProps here.
+        // Does not run helper functions and getinitialProps in each component.
+        // Just received return value
+        // Then the returning jsx is working with "pageProps" which is "getInitialProps" in each component
         const { Component, pageProps } =this.props;
         // console.log('pageProps: ---------> ', pageProps)
         // console.log('appProps ======> ', this.props.appProps);

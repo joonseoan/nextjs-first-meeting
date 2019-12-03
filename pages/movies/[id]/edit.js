@@ -22,7 +22,7 @@ class EditMovie extends Component {
     }
 
     render() {
-        console.log('this.state.movie', this.state.movie)
+        // console.log('this.state.movie', this.state.movie)
         return(
             <div className="container">
                 <h1>Edit the Movie</h1>

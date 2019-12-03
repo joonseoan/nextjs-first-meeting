@@ -8,10 +8,10 @@ const Movie = props => {
 
     const router = useRouter();
     // function
-    console.log('useRouter: ', useRouter);
+    // console.log('useRouter: ', useRouter);
     
     // id is from url
-    console.log('useRouter.query', router.query)
+    // console.log('useRouter.query', router.query)
     
     // we are using id. we can use other field name like [title].js, btw.
     // id is from file name [id].js
@@ -21,8 +21,15 @@ const Movie = props => {
 
     const handleDeleteMovie = async () => {
         const { id } = router.query;
-        await deleteMovie(id);
-        router.push('/');
+        // const response = await deleteMovie(id);
+        // if(!response) { throw new Error('Unable to delete the movie') }
+        // router.push('/');
+
+        deleteMovie(id).then(() => {
+            router.push('/');
+        })
+
+        
     }
 
     return (
@@ -67,10 +74,10 @@ Movie.getInitialProps = async (context) => {
     "query: {id: "2"}__proto__: Object
     .js:41 
    */
-  console.log('context', context);
+//   console.log('context', context);
   const { id } = context.query;
   const movie = await getMovieById(id);
-  console.log(movie)
+//   console.log(movie)
 
   return { movie };
 }

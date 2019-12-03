@@ -169,6 +169,7 @@ const Home = props => {
 
 Home.getInitialProps = async () => {
   const movies = await getMovies();
+  // console.log('movies in home componen ========>', movies)
   const categories = await getCategories();
   const images = movies.map(movie => ({ 
     id: `movie-${ movie.id }`,

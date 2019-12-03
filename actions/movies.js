@@ -54,7 +54,7 @@ export const getCategories = () => {
 }
 
 export const getMovies = async () => {
-    const response = await axios.get(BASE_URL+'/api/vi/movies');
+    const response = await axios.get(BASE_URL+'/api/v1/movies');
     return response.data;
     
     // return new Promise((resolve, reject) => {
@@ -66,7 +66,7 @@ export const getMovies = async () => {
 }
 
 export const createMovie = async movie => {
-  const response = await axios.post(BASE_URL + `/api/vi/movies`, movie);
+  const response = await axios.post(BASE_URL + `/api/v1/movies`, movie);
   return response.data; 
 
     // return new Promise((resolve, reject) => {
@@ -83,7 +83,7 @@ export const createMovie = async movie => {
 }
 
 export const getMovieById = async id => {
-  const response = await axios.get(BASE_URL+`/api/vi/movies/${id}`);
+  const response = await axios.get(BASE_URL+`/api/v1/movies/${id}`);
   return response.data;
 
   // return new Promise((resolve, reject) => {
@@ -95,6 +95,7 @@ export const getMovieById = async id => {
 }
 
 export const deleteMovie = async id => {
-  console.log('iddddddddddddddddd', id)
-  await axios.delete(BASE_URL+`/api/vi/movies/${id}`);
+  // console.log('iddddddddddddddddd', id)
+  const response = await axios.delete(BASE_URL+`/api/v1/movies/${id}`);
+  return response.data;
 }

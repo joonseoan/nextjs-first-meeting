@@ -1,7 +1,10 @@
 import React from 'react';
 import withSecret from '../components/hoc/withSecret';
 
-class Secret extends React.Component {
+// class Secret extends React.Component {
+
+const Secret = props => {
+
 
     // renderSecretPage = () => {
     //     const isAuthenticated = true;
@@ -21,12 +24,12 @@ class Secret extends React.Component {
     //         )
     //     }
     // }
-    render() {
+    // render() {
         return(
             // this.renderSecretPage();
             <h1>I am a secret</h1>
         )
-    }
+    // }
 }
 
 export default withSecret(Secret);
