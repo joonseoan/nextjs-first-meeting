@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const MovieCreateForm = props => {
+    const defaultData = {};
+    const formData = props.initialData ?  { ...props.initialData } : defaultData
 
-    const [ form, setForm ] = useState({
-        name: '',
-        description: '',
-        rating: '',
-        image: '',
-        cover: '',
-        longDesc: '',
-        genre: ''
-    });
+        // [IMPORTANT!!!!!!!!!!!!!!!!!]
+    // GreatThing about useState: can get props data ahead when the compoent is diplayed
+    // static getDerivedFromPropsToState!!!!!!!!!1
+    const [ form, setForm ] = useState(formData);
+
+    // const [ form, setForm ] = useState({});
+    // useEffect(() => {
+
+    //     if(props.initialData) {
+    //         setForm(props.initialData);
+    //     }
+
+    // }, [ { ...props.initialData } ])
 
     const handleFormInputs = e => {
         const { name, value } = e.target;
@@ -33,6 +39,19 @@ const MovieCreateForm = props => {
         props.handleForSubmit({ ...form });
     }
 
+    const selected = option => {
+        if(form.genre) {
+            const genre = form.genre.split(', ');
+            if(genre.indexOf(option) > -1) {
+                return 'selected';
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     return(
         <form>
             <div className="form-group">
@@ -40,7 +59,7 @@ const MovieCreateForm = props => {
                 <input 
                     type="text"
                     name="name"
-                    value={ form.name }
+                    value={ form.name || '' }
                     onChange= {handleFormInputs } 
                     className="form-control" 
                     id="name" aria-describedby="emailHelp" 
@@ -53,7 +72,7 @@ const MovieCreateForm = props => {
                     type="text"
                     name="description"
                     onChange={ handleFormInputs } 
-                    value={ form.description } 
+                    value={ form.description || '' } 
                     className="form-control" 
                     id="description" 
                     placeholder="Somewhere in Middle-earth..." 
@@ -64,7 +83,7 @@ const MovieCreateForm = props => {
                 <input 
                     type="number"
                     name="rating"
-                    value={ form.rating} 
+                    value={ form.rating || '' } 
                     onChange={ handleFormInputs } 
                     max="5" min="0" 
                     className="form-control" 
@@ -78,7 +97,7 @@ const MovieCreateForm = props => {
                 <input 
                     type="text"
                     name="image"
-                    value={ form.image }
+                    value={ form.image || '' }
                     onChange={ handleFormInputs } 
                     className="form-control" 
                     id="image" 
@@ -89,7 +108,7 @@ const MovieCreateForm = props => {
                 <label htmlFor="cover">Cover</label>
                 <input 
                     type="text"
-                    value={ form.cover }
+                    value={ form.cover || '' }
                     name="cover"
                     onChange={ handleFormInputs } 
                     className="form-control" 
@@ -100,7 +119,7 @@ const MovieCreateForm = props => {
             <div className="form-group">
                 <label htmlFor="longDesc">Long Description</label>
                 <textarea
-                    value={ form.longDesc } 
+                    value={ form.longDesc || '' } 
                     name="longDesc"
                     onChange={ handleFormInputs } 
                     className="form-control" 

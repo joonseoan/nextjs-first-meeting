@@ -5,28 +5,29 @@ import { getMovieById } from '../../../actions/movies';
 
 class EditMovie extends Component {
 
-    static getInitialProps({ query }) {
-        return { query }
-    }
-
-    state = {
-        movie: {}
-    }
-
-    componentDidMount = async () => {
-        const { id } = this.props.query;
+    static async getInitialProps({ query }) {
+        const { id } = query;
         const movie = await getMovieById(id);
-        this.setState({
-            movie: { ...movie }
-        });
+        return { movie }
     }
+
+    // state = {
+    //     movie: {}
+    // }
+
+    // componentDidMount = async () => {
+    //     const { id } = this.props.query;
+    //     const movie = await getMovieById(id);
+    //     this.setState({
+    //         movie: { ...movie }
+    //     });
+    // }
 
     render() {
-        // console.log('this.state.movie', this.state.movie)
         return(
             <div className="container">
                 <h1>Edit the Movie</h1>
-                <MovieCreateForm />
+                <MovieCreateForm initialData={ this.props.movie } />
             </div>
         );
     }

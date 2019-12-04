@@ -18,9 +18,9 @@ const Movie = props => {
     // const { id } = router.query;
 
     const { movie } = props;
+    const { id } = router.query;
 
     const handleDeleteMovie = async () => {
-        const { id } = router.query;
         // const response = await deleteMovie(id);
         // if(!response) { throw new Error('Unable to delete the movie') }
         // router.push('/');
@@ -44,6 +44,12 @@ const Movie = props => {
                     className="btn btn-primary btn-lg mr-1"
                 >
                     Learn More
+                </button>
+                <button
+                    onClick={ () => router.push(`/movies/${id}/edit`) } 
+                    className="btn btn-warning btn-lg mr-1"
+                >
+                    Update
                 </button>
                 <button
                     onClick={ () => handleDeleteMovie() } 
