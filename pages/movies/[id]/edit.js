@@ -1,7 +1,8 @@
 import { Component } from 'react';
+import Router from 'next/router';
 
 import MovieCreateForm from '../../../components/movieCreateForm';
-import { getMovieById } from '../../../actions/movies';
+import { getMovieById, updateMovie } from '../../../actions/movies';
 
 class EditMovie extends Component {
 
@@ -23,11 +24,20 @@ class EditMovie extends Component {
     //     });
     // }
 
+    handleUpdateMovie = async movieUpdate => {
+        const updatedMovie = await updateMovie(movieUpdate);        
+        Router.push(`/movies/${movieUpdate.id}`)
+    }
+
     render() {
         return(
             <div className="container">
                 <h1>Edit the Movie</h1>
-                <MovieCreateForm initialData={ this.props.movie } />
+                <MovieCreateForm
+                    buttonName="Update" 
+                    initialData={ this.props.movie } 
+                    handleForSubmit={ this.handleUpdateMovie }
+                />
             </div>
         );
     }

@@ -47,8 +47,19 @@ app.prepare().then(() => {
 
   server.patch('/api/v1/movies/:id', (req, res) => {
       const { id } = req.params;
-      const movie = req.body;
-      return res.json({ message: `Updating Post id: ${id} ${movie} `});
+      const updateMovie = req.body;
+      const movieIndex = movieData.findIndex(movie => movie.id === id);
+      movieData[movieIndex] = updateMovie;
+
+    //   console.log(movieData)
+      
+      const jsonData = JSON.stringify(movieData, null, 2);
+      fs.writeFile(pathToFile, jsonData, err => {
+          //   "send" for message
+          if(err) { return res.status(422).send(err) };
+
+          return res.json(updateMovie)
+      });
   });
 
   server.delete('/api/v1/movies/:id', (req, res) => {

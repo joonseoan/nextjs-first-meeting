@@ -4,7 +4,7 @@ const MovieCreateForm = props => {
     const defaultData = {};
     const formData = props.initialData ?  { ...props.initialData } : defaultData
 
-        // [IMPORTANT!!!!!!!!!!!!!!!!!]
+    // [IMPORTANT!!!!!!!!!!!!!!!!!]
     // GreatThing about useState: can get props data ahead when the compoent is diplayed
     // static getDerivedFromPropsToState!!!!!!!!!1
     const [ form, setForm ] = useState(formData);
@@ -39,18 +39,18 @@ const MovieCreateForm = props => {
         props.handleForSubmit({ ...form });
     }
 
-    const selected = option => {
-        if(form.genre) {
-            const genre = form.genre.split(', ');
-            if(genre.indexOf(option) > -1) {
-                return 'selected';
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
+    // const selected = option => {
+    //     if(form.genre) {
+    //         const genre = form.genre.split(', ');
+    //         if(genre.indexOf(option) > -1) {
+    //             return 'selected';
+    //         } else {
+    //             return false;
+    //         }
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     return(
         <form>
@@ -145,7 +145,11 @@ const MovieCreateForm = props => {
                 </select>
             </div>
             <button 
-                onClick={ handleSubmitForm } type="submit" className="btn btn-primary">Create
+                onClick={ handleSubmitForm } 
+                type="submit" 
+                className="btn btn-primary"
+            >
+                { props.buttonName ? 'Update' : 'Crreate' }
             </button>
         </form>
 

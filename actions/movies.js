@@ -94,6 +94,11 @@ export const getMovieById = async id => {
   // })
 }
 
+export const updateMovie = async movieUpdate => {
+  const response = await axios.patch(BASE_URL+`/api/v1/movies/${movieUpdate.id}`, movieUpdate);
+  return response.data;
+}
+
 export const deleteMovie = async id => {
   // console.log('iddddddddddddddddd', id)
   const response = await axios.delete(BASE_URL+`/api/v1/movies/${id}`);
