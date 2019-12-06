@@ -26,7 +26,7 @@ class EditMovie extends Component {
 
     handleUpdateMovie = async movieUpdate => {
         const updatedMovie = await updateMovie(movieUpdate);        
-        Router.push(`/movies/${movieUpdate.id}`)
+        Router.push('/movies/[id]', `/movies/${movieUpdate.id}`)
     }
 
     render() {

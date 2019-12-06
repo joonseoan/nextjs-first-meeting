@@ -142,6 +142,14 @@ const Home = props => {
 
   // []);
 
+  const [ filter, setFilter ] = useState('');
+
+
+  const changeCategory = category => {
+    // alert(`changing to category of: ${category}`);
+    setFilter(category)
+  }
+
   return( 
       <div>
         <div className="home-page">
@@ -150,12 +158,15 @@ const Home = props => {
               <div className="col-lg-3">
                 {/* <div>{ count }</div>
                 <button onClick={ () => setCount(count+1) }>Click Me</button> */}
-                <SideMenu 
+                <SideMenu
+                  changeCategory={ changeCategory } 
+                  activeCategory={ filter }
                   categories={ props.categories }
                 />
               </div>
               <div className="col-lg-9">
                 <Carousel images={ props.images } />
+                <h1>Displaying { filter } movies</h1>
                 <div className="row">
                   <MovieList movieList={ props.movies || [] }/>
                 </div>

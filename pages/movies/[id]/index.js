@@ -1,6 +1,8 @@
 // file name: [id].js: means that it is dynamic url
 
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 
 import { getMovieById, deleteMovie } from '../../../actions/movies';
 
@@ -28,8 +30,6 @@ const Movie = props => {
         deleteMovie(id).then(() => {
             router.push('/');
         })
-
-        
     }
 
     return (
@@ -45,12 +45,16 @@ const Movie = props => {
                 >
                     Learn More
                 </button>
-                <button
-                    onClick={ () => router.push(`/movies/${id}/edit`) } 
-                    className="btn btn-warning btn-lg mr-1"
-                >
-                    Update
-                </button>
+                {/* Important to do fater change!!! */}
+                <Link href="/movies/[id]/edit" as={`/movies/${id}/edit`}>
+                    <button
+                        // moved to href in Link to href connection
+                        // onClick={ () => router.push(`/movies/${id}/edit`) } 
+                        className="btn btn-warning btn-lg mr-1"
+                    >
+                        Update
+                    </button>
+                </Link>
                 <button
                     onClick={ () => handleDeleteMovie() } 
                     className="btn btn-danger btn-lg"
