@@ -27,6 +27,7 @@ const MovieList = props => {
                             <a>{ movie.name }</a>
                         </Link>
                         </h4>
+                        <div className="movie-genre">{ movie.genre }</div>
                         <p className="card-text">{ shorten(movie.description, 100) }</p>
                     </div>
                     <div className="card-footer">

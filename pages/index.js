@@ -142,12 +142,20 @@ const Home = props => {
 
   // []);
 
-  const [ filter, setFilter ] = useState('');
+  const [ filter, setFilter ] = useState('all');
 
 
   const changeCategory = category => {
     // alert(`changing to category of: ${category}`);
     setFilter(category)
+  }
+
+  const filterMovies = () => {
+
+    if(filter === 'all') return props.movies;  
+    return props.movies.filter(movie => 
+      movie.genre && movie.genre.includes(filter))
+  
   }
 
   return( 
@@ -156,8 +164,9 @@ const Home = props => {
           <div className="container">
             <div className="row">
               <div className="col-lg-3">
-                {/* <div>{ count }</div>
-                <button onClick={ () => setCount(count+1) }>Click Me</button> */}
+                {/* 
+                <div>{ count }</div>
+                  <button onClick={ () => setCount(count+1) }>Click Me</button> */}
                 <SideMenu
                   changeCategory={ changeCategory } 
                   activeCategory={ filter }
@@ -168,7 +177,7 @@ const Home = props => {
                 <Carousel images={ props.images } />
                 <h1>Displaying { filter } movies</h1>
                 <div className="row">
-                  <MovieList movieList={ props.movies || [] }/>
+                  <MovieList movieList={ filterMovies() || [] }/>
                 </div>
               </div>
             </div>
@@ -192,4 +201,4 @@ Home.getInitialProps = async () => {
   return { movies, images, categories };
 }
 
-export default Home
+export default Home;

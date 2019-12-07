@@ -26,6 +26,7 @@ import App from 'next/app';
 import Head from 'next/head';
 import NavBar from '../components/navbar';
 import Footer from '../components/footer';
+import '../styles/index.scss';
 
 class MovieApp extends App {
 
@@ -87,8 +88,8 @@ class MovieApp extends App {
                 </div>
                 <Footer />
                 <style jsx>{`
-                    .base-page {
-                    padding-top: 80px;
+                      .base-page {
+                      padding-top: 80px;
                     }
                 `}
                 </style>

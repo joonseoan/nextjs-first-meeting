@@ -94,21 +94,28 @@ app.prepare().then(() => {
         </html>
       `);
   });
-
+  
   // For all nextjs server, not express server
-  server.get('*', (req, res) => {
-    return handle(req, res);
+  // server.get('*', (req, res) => {
+  //   return handle(req, res);
 
-    // return json value only in the browser
-    // return res.json({ message: 'Hello, it is first next js server'})
-  })
+  //   // return json value only in the browser
+  //   // return res.json({ message: 'Hello, it is first next js server'})
+  // })
+
+  // server.post('*', (req, res) => {
+  //   return handle(req, res);
+  // })
+  
 
   // without use(handle)
-  server.listen(PORT, (err) => {
-    if (err) throw err
-    console.log('> Ready on port ' + PORT)
+  server.use(handle).listen(PORT, (err) => {
+      if (err) throw err
+      console.log('> Ready on port ' + PORT)
   })
 });
+
+
 
 
 

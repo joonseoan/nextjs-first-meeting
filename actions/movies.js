@@ -39,6 +39,7 @@ const BASE_URL = 'http://localhost:3000';
 // ];
 
 const CATEGORY_DATA = [
+  { id: '0', name: 'all' },
   { id: '1', name: 'drama' },
   { id: '2', name: 'action' },
   { id: '3', name: 'adventure' },
@@ -102,5 +103,10 @@ export const updateMovie = async movieUpdate => {
 export const deleteMovie = async id => {
   // console.log('iddddddddddddddddd', id)
   const response = await axios.delete(BASE_URL+`/api/v1/movies/${id}`);
+  return response.data;
+}
+
+export const getPosts = async () => {
+  const response = await axios.get(BASE_URL+'/api/v1/posts');
   return response.data;
 }
